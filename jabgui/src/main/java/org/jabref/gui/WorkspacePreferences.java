@@ -22,6 +22,7 @@ public class WorkspacePreferences {
     private final ObjectProperty<Theme> theme;
     private final BooleanProperty themeSyncOs;
     private final BooleanProperty shouldOpenLastEdited;
+    private final BooleanProperty reconnectSharedDbs;
     private final BooleanProperty showAdvancedHints;
     private final BooleanProperty confirmDelete;
     private final BooleanProperty confirmHideTabBar;
@@ -33,6 +34,7 @@ public class WorkspacePreferences {
                                 Theme theme,
                                 boolean themeSyncOs,
                                 boolean shouldOpenLastEdited,
+                                boolean reconnectSharedDbs,
                                 boolean showAdvancedHints,
                                 boolean confirmDelete,
                                 boolean confirmHideTabBar,
@@ -43,6 +45,7 @@ public class WorkspacePreferences {
         this.theme = new SimpleObjectProperty<>(theme);
         this.themeSyncOs = new SimpleBooleanProperty(themeSyncOs);
         this.shouldOpenLastEdited = new SimpleBooleanProperty(shouldOpenLastEdited);
+        this.reconnectSharedDbs = new SimpleBooleanProperty(reconnectSharedDbs);
         this.showAdvancedHints = new SimpleBooleanProperty(showAdvancedHints);
         this.confirmDelete = new SimpleBooleanProperty(confirmDelete);
         this.confirmHideTabBar = new SimpleBooleanProperty(confirmHideTabBar);
@@ -58,6 +61,7 @@ public class WorkspacePreferences {
                 new Theme(Theme.BASE_CSS),                                  // Default theme
                 false,                                                      // Default theme sync with OS
                 true,                                                       // Default open last edited
+                false,                                                      // Default reconnect shared databases
                 true,                                                       // Default show advanced hints
                 true,                                                       // Default confirm delete
                 true,                                                       // Default confirm hide tab bar
@@ -76,6 +80,7 @@ public class WorkspacePreferences {
         this.theme.set(preferences.getTheme());
         this.themeSyncOs.set(preferences.shouldThemeSyncOs());
         this.shouldOpenLastEdited.set(preferences.shouldOpenLastEdited());
+        this.reconnectSharedDbs.set(preferences.shouldReconnectSharedDbs());
         this.showAdvancedHints.set(preferences.shouldShowAdvancedHints());
         this.confirmDelete.set(preferences.shouldConfirmDelete());
         this.confirmHideTabBar.set(preferences.shouldHideTabBar());
@@ -152,6 +157,18 @@ public class WorkspacePreferences {
 
     public void setOpenLastEdited(boolean shouldOpenLastEdited) {
         this.shouldOpenLastEdited.set(shouldOpenLastEdited);
+    }
+
+    public boolean shouldReconnectSharedDbs() {
+        return reconnectSharedDbs.get();
+    }
+
+    public BooleanProperty reconnectSharedDbsProperty() {
+        return reconnectSharedDbs;
+    }
+
+    public void setReconnectSharedDbs(boolean shouldReconnectSharedDbs) {
+        this.reconnectSharedDbs.set(shouldReconnectSharedDbs);
     }
 
     public boolean shouldShowAdvancedHints() {

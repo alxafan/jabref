@@ -111,6 +111,7 @@ public class JabRefGuiPreferences extends JabRefCliPreferences implements GuiPre
     private static final String THEME = "fxTheme";
     private static final String THEME_SYNC_OS = "themeSyncOs";
     private static final String OPEN_LAST_EDITED = "openLastEdited";
+    private static final String RECONNECT_SHARED_DB = "reconnectSharedDb";
     private static final String SHOW_ADVANCED_HINTS = "showAdvancedHints";
     private static final String CONFIRM_DELETE = "confirmDelete";
     private static final String CONFIRM_HIDE_TAB_BAR = "confirmHideTabBar";
@@ -567,6 +568,8 @@ public class JabRefGuiPreferences extends JabRefCliPreferences implements GuiPre
                 putBoolean(THEME_SYNC_OS, newValue));
         EasyBind.listen(workspacePreferences.openLastEditedProperty(), (_, _, newValue) ->
                 putBoolean(OPEN_LAST_EDITED, newValue));
+        EasyBind.listen(workspacePreferences.reconnectSharedDbsProperty(), (_, _, newValue) ->
+                putBoolean(RECONNECT_SHARED_DB, newValue));
         EasyBind.listen(workspacePreferences.showAdvancedHintsProperty(), (_, _, newValue) ->
                 putBoolean(SHOW_ADVANCED_HINTS, newValue));
         EasyBind.listen(workspacePreferences.confirmDeleteProperty(), (_, _, newValue) ->
@@ -586,6 +589,7 @@ public class JabRefGuiPreferences extends JabRefCliPreferences implements GuiPre
                 new Theme(get(THEME, Theme.BASE_CSS)),
                 getBoolean(THEME_SYNC_OS, defaults.shouldThemeSyncOs()),
                 getBoolean(OPEN_LAST_EDITED, defaults.shouldOpenLastEdited()),
+                getBoolean(RECONNECT_SHARED_DB, defaults.shouldReconnectSharedDbs()),
                 getBoolean(SHOW_ADVANCED_HINTS, defaults.shouldShowAdvancedHints()),
                 getBoolean(CONFIRM_DELETE, defaults.shouldConfirmDelete()),
                 getBoolean(CONFIRM_HIDE_TAB_BAR, defaults.shouldHideTabBar()),

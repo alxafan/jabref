@@ -74,6 +74,7 @@ public class GeneralTabViewModel implements PreferenceTabViewModel {
     private final StringProperty fontSizeProperty = new SimpleStringProperty();
 
     private final BooleanProperty openLastStartupProperty = new SimpleBooleanProperty();
+    private final BooleanProperty reconnectSharedDbProperty = new SimpleBooleanProperty();
     private final BooleanProperty showAdvancedHintsProperty = new SimpleBooleanProperty();
     private final BooleanProperty confirmDeleteProperty = new SimpleBooleanProperty();
     private final BooleanProperty shouldAskForIncludingCrossReferencesProperty = new SimpleBooleanProperty();
@@ -212,6 +213,7 @@ public class GeneralTabViewModel implements PreferenceTabViewModel {
         fontSizeProperty.setValue(String.valueOf(workspacePreferences.getMainFontSize()));
 
         openLastStartupProperty.setValue(workspacePreferences.shouldOpenLastEdited());
+        reconnectSharedDbProperty.setValue(workspacePreferences.shouldReconnectSharedDbs());
         showAdvancedHintsProperty.setValue(workspacePreferences.shouldShowAdvancedHints());
 
         confirmDeleteProperty.setValue(workspacePreferences.shouldConfirmDelete());
@@ -261,6 +263,7 @@ public class GeneralTabViewModel implements PreferenceTabViewModel {
         workspacePreferences.setThemeSyncOs(themeSyncOsProperty.getValue());
 
         workspacePreferences.setOpenLastEdited(openLastStartupProperty.getValue());
+        workspacePreferences.setReconnectSharedDbs(reconnectSharedDbProperty.getValue());
         workspacePreferences.setShowAdvancedHints(showAdvancedHintsProperty.getValue());
 
         workspacePreferences.setConfirmDelete(confirmDeleteProperty.getValue());
